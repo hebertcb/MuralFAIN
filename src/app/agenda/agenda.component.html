@@ -4,9 +4,19 @@
 <div class="row no-gutters evento">
   <div class="col text-center">
     <span class="numerof">21</span>
-    <h5 class="mb-0">JUN</h5>
+    <h5 class="mb-0 text-uppercase">jun</h5>
   </div>
   <div class="col-9">
     Jornada muy importante de la FAIN y sus amigos
+  </div>
+</div>
+
+<div *ngFor="let evento of eventoList" class="row no-gutters evento">
+  <div class="col text-center">
+    <span class="numerof">{{evento.fecha | date:'dd'}}</span>
+    <h5 class="mb-0 text-uppercase">{{evento.fecha | date:'LLL'}}</h5>
+  </div>
+  <div class="col-9">
+    {{evento.titulo}}
   </div>
 </div>

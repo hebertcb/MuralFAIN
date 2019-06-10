@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AvisoService } from './aviso.service';
+import { AvisosService } from './avisos.service';
 
 describe('AvisoService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

@@ -11,3 +11,16 @@
     </li>
   </ul>
 </div>
+
+<div *ngFor="let aviso of avisoList">
+  <ul>
+    <li>
+      <span class="font-weight-bold">{{aviso.titulo}}:</span>
+      <p>
+        {{aviso.descripcion}}
+      </p>
+    </li>
+  </ul>
+</div>
+
+

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EventosService } from '../services/eventos.service';
+import { Evento } from '../models/evento';
 
 @Component({
   selector: 'app-agenda',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./agenda.component.css']
 })
 export class AgendaComponent implements OnInit {
+  eventoList: Evento[];
 
-  constructor() { }
+  constructor(private eventosService:EventosService) { }
 
   ngOnInit() {
+    return this.eventosService.getEventos()
+    .snapshotChanges().subscribe(item=>{
+      this.eventoList=[];
+      item.forEach( element => {
+        let x = element.payload.toJSON();
+        x["$key"]=element.key;
+        this.eventoList.push(x as Evento);
+      });
+    });
   }
+
 
 }
