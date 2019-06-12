@@ -12,6 +12,7 @@ import { AvisosComponent } from './avisos/avisos.component';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -26,8 +27,9 @@ import { environment } from '../environments/environment';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireModule.initializeApp(environment.firebaseConfig),    
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-slider',
@@ -6,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./slider.component.css']
 })
 export class SliderComponent implements OnInit {
+  slides:Observable<any[]>;
 
-  constructor() { }
+  constructor(private firebase: AngularFireDatabase) {
+    this.slides = firebase.list('slides').valueChanges();
+  }
 
   ngOnInit() {
   }

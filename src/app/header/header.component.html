@@ -1,5 +1,5 @@
-<img id="logo" class="ml-1" src="assets/logo-h.png" alt="">
-<span class="">
-  MURAL DIGITAL FAIN!
+<img id="logo" src="{{(headerInfo | async)?.logourl}}" alt="">
+<span class="mr-2 text-uppercase">
+  {{(headerInfo | async)?.titulo}}
 </span>
 

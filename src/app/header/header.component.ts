@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
+
 
 @Component({
   selector: 'app-header',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  headerInfo: {};
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private firebase: AngularFireDatabase) { 
+    this.headerInfo = firebase.object('general').valueChanges();
   }
+
+
+  ngOnInit() { }
 
 }
