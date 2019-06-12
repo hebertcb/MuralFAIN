@@ -1,12 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
-app-header span{
+/* Header */
+.navbar span{
     font-family: Montserrat;
     font-weight: 700;
     font-size: 1.75rem;
     color: white;
     /*margin: 0 auto;*/
 }
-app-header{
+.navbar{
     background-color: #2c3e50;
     min-height: 6rem;
 }
@@ -14,6 +14,8 @@ app-header{
 #logo{
     max-height: 50px;
 }
+
+/*  */
 
 .cartel{
     font-family: Montserrat;
@@ -42,3 +44,10 @@ app-header{
     color: white;
     background-color: black;
 }
+
+/***************/
+
+  body {
+    background: #007bff;
+    background: linear-gradient(to right, #0062E6, #33AEFF);
+  }

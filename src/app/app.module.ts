@@ -14,6 +14,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { environment } from '../environments/environment';
     HeaderComponent,
     SliderComponent,
     AgendaComponent,
-    AvisosComponent
+    AvisosComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
