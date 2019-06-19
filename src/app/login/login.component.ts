@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService : AuthService) { }
 
-  ngOnInit() {
+  ngOnInit() {    
+  }
+
+  onGoogleLogin(){
+    this.authService.loginGoogle()    
+    .then((res) => {
+      //this.router.navigate(['/admin/bienvenida']);
+      console.log('Estás logeado!');
+      alert('Estás logeado!');      
+    }).catch( err => console.log(err.message));
   }
 
 }

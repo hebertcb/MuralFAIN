@@ -8,14 +8,16 @@ import { HeaderComponent } from './header/header.component';
 import { SliderComponent } from './slider/slider.component';
 import { AgendaComponent } from './agenda/agenda.component';
 import { AvisosComponent } from './avisos/avisos.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
+import { AuthService } from './services/auth.service';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { HomeComponent } from './home/home.component';
     AgendaComponent,
     AvisosComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,7 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),    
     AngularFireDatabaseModule,
-    AngularFireStorageModule
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
