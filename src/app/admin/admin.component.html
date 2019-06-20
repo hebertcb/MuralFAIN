@@ -23,6 +23,7 @@
   <ul class="list-group">
     <li *ngFor="let aviso of avisoList" class="list-group-item"><span class="font-weight-bold">{{aviso.titulo}}: </span>{{aviso.descripcion}}</li>
   </ul>
+
   <h2>Eventos</h2>
 
   <button class="btn btn-dark" data-toggle="collapse" data-target="#form2">Agregar...</button>
@@ -41,11 +42,13 @@
   </div>
 
   <ul class="list-group">
-    <li *ngFor="let evento of eventoList" class="list-group-item"><span class="font-weight-bold">({{evento.fecha}}) </span>{{evento.titulo}}</li>
-  </ul>  
+    <li *ngFor="let evento of eventoList" class="list-group-item"><span class="font-weight-bold">({{evento.fecha  |  date:"dd 'de' MMMM"}}) </span>{{evento.titulo}}</li>
+  </ul> 
+
   <h2>Slides</h2>
+
   <div *ngFor="let slide of slideList" class="media">
-    <img src="{{slide.imagen}}" class="mr-3" alt="...">
+    <img [src]="slide.url" class="mr-3" alt="...">
     <div class="media-body">
       <h5 class="mt-0">Título</h5>
       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.

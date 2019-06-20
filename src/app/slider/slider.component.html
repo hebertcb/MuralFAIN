@@ -1,3 +1,4 @@
+<!--div id="myCarousel" class="carousel slide" data-ride="carousel"-->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" *ngFor="let slide of slideList; index as i" [attr.data-slide-to]="i" [class.active]="!i"></li>
@@ -6,8 +7,24 @@
     <!--div class="carousel-item active">
       <img src="https://fakeimg.pl/640x360/" class="d-block w-100" alt="...">
     </div-->
-    <div *ngFor="let slide of slideList; index as k" class="carousel-item" [class.active]="!k">
-      <img src="{{slide.imagen}}" class="d-block w-100" alt="...">
+    <div *ngFor="let slide of slideList; index as k" class="carousel-item" [ngSwitch]="slide.tipo" [class.active]="!k">
+      <img *ngSwitchCase="'imagen'" [src]="slide.url" class="d-block w-100" alt="...">
+      <video *ngSwitchCase="'video'" id="video" class="w-100 d-block">
+        <source [src]="slide.url" type="video/webm">
+          Your browser does not support the video tag.
+      </video>
+      <img *ngSwitchCase="'texto'" src="https://ipsumimage.appspot.com/640x360" class="d-block w-100" alt="...">
+      <div *ngSwitchCase="'texto'" class="carousel-caption d-none d-md-block">
+          <h5>{{slide.titulo}}</h5>
+          <p>{{slide.descripcion}}</p>
+      </div>
+      <img *ngSwitchCase="'audio'" src="https://ipsumimage.appspot.com/640x360" class="d-block w-100" alt="...">
+      <div *ngSwitchCase="'audio'">
+        <audio>
+          <source [src]="slide.url" type="audio/ogg">
+            Your browser does not support the audio element.
+        </audio>
+      </div>
     </div>
   </div>
   <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
