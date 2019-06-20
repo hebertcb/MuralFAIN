@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyB4c2_9LuGed13X3a6DGR2QVfDazIRluwY",
+    apiKey: "<your APIKey>",
     authDomain: "muralfain.firebaseapp.com",
     databaseURL: "https://muralfain.firebaseio.com",
     projectId: "muralfain",
