@@ -7,7 +7,7 @@
     <!--div class="carousel-item active">
       <img src="https://fakeimg.pl/640x360/" class="d-block w-100" alt="...">
     </div-->
-    <div *ngFor="let slide of slideList; index as k" class="carousel-item" [ngSwitch]="slide.tipo" [class.active]="!k">
+    <div *ngFor="let slide of slideList; first as isFirst" class="carousel-item" [ngSwitch]="slide.tipo" [class.active]="isFirst">
       <img *ngSwitchCase="'imagen'" [src]="slide.url" class="d-block w-100" alt="...">
       <video *ngSwitchCase="'video'" id="video" class="w-100 d-block">
         <source [src]="slide.url" type="video/webm">

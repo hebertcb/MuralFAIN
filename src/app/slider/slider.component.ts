@@ -7,7 +7,7 @@ import { SlidesService } from '../services/slides.service';
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.css']
 })
-export class SliderComponent implements OnInit {
+export class SliderComponent implements OnInit{
   slideList: any[];
 
   constructor(private slidesService: SlidesService) { }
@@ -21,7 +21,7 @@ export class SliderComponent implements OnInit {
         x["$key"]=element.key;
         this.slideList.push(x as any);
       });
-    });
+    });  
   }
 
 }
