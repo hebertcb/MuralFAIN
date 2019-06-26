@@ -9,12 +9,7 @@
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. In velit asperiores animi reprehenderit unde.
       </p>
     </li>
-  </ul>
-</div>
-
-<div *ngFor="let aviso of avisoList">
-  <ul>
-    <li>
+    <li *ngFor="let aviso of avisoList">
       <span class="font-weight-bold">{{aviso.titulo}}:</span>
       <p>
         {{aviso.descripcion}}
