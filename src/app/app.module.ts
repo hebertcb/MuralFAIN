@@ -18,6 +18,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
 import { AdminComponent } from './admin/admin.component';
+import { VideoSlideComponent } from './slider/video-slide/video-slide.component';
+import { ImageSlideComponent } from './slider/image-slide/image-slide.component';
+import { TextSlideComponent } from './slider/text-slide/text-slide.component';
+import { AudioSlideComponent } from './slider/audio-slide/audio-slide.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { AdminComponent } from './admin/admin.component';
     AvisosComponent,
     LoginComponent,
     HomeComponent,
-    AdminComponent
+    AdminComponent,
+    VideoSlideComponent,
+    ImageSlideComponent,
+    TextSlideComponent,
+    AudioSlideComponent
   ],
   imports: [
     BrowserModule,

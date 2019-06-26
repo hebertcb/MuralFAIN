@@ -15,24 +15,25 @@
     max-height: 50px;
 }
 
-/*  */
-
-.cartel{
-    font-family: Montserrat;
-    font-weight: 700;
-    background-color: #1abc9c;
-    padding: .8rem;
-    text-align: center;
+/* Carrusel */
+.carousel-item{
+    height: calc(100vh - 6rem);    
+    background-color: gray;
 }
 
-/* AVISOS */
+.carousel-item .bgimage{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
 
 
-/* AGENDA */
+/* Avisos */
+
+/* Agenda */
 .evento{
     padding: .5rem 0;
     background-color: rgb(230, 230, 230);
-
 }
 
 .numerof{
@@ -45,9 +46,21 @@
     background-color: black;
 }
 
-/***************/
+/* General */
 
-  body {
+body {
     background: #007bff;
     background: linear-gradient(to right, #0062E6, #33AEFF);
-  }
+}
+
+.cartel{
+    font-family: Montserrat;
+    font-weight: 700;
+    background-color: #1abc9c;
+    padding: .8rem;
+    text-align: center;
+}
+/*
+app-avisos{
+    overflow-y: auto; 
+}*/

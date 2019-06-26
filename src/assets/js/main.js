@@ -6,30 +6,26 @@
 $(function(){
     var currentVid;
 
-    function playVideo(v){  
-        console.log('Play video and Stop carousel');      
+    function playVideo(v){ //Reproducir video y pausar carrusel   
         v.trigger('play');
         $('#myCarousel').carousel('pause');
-        v.on('ended', function(){
-            $('#myCarousel').carousel('next').carousel('cycle');            
-            v.off();      
-            console.log('End Video');      
+        v.on('ended', function(){ //Finalizó el video, pasar al siguiente slide y des-pausear el carrousel
+            setTimeout( () => $('#myCarousel').carousel('next').carousel('cycle') ,500);           
+            v.off();  
         });
     }
 
-    function skipVideo(v){ 
-        console.log('Stop EX-currentVideo and Play Carousel');   
+    function skipVideo(v){ //Detener video del slide anterior y des-pausear el carrusel
         vid.trigger('pause');
         vid[0].currentTime = 0;
         $('#myCarousel').carousel('cycle');
     }
 
-    $('#myCarousel').on('slid.bs.carousel', function (e) {
+    $('#myCarousel').on('slid.bs.carousel', function (e) { //El carrusel llegó al siguiente slide
         if(currentVid!=null) skipVideo(currentVid);
         vid = $('#myCarousel .carousel-item.active video');
-        console.log(vid);
         if(vid.length){
-            playVideo(vid);
+            setTimeout( () => playVideo(vid) ,500);
             currentVid = vid;
         } else {
             currentVid = undefined;
