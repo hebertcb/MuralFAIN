@@ -4,32 +4,37 @@
     , false);
 });*/
 $(function(){
-    var currentVid;
+    var currentMed;
 
-    function playVideo(v){ //Reproducir video y pausar carrusel   
-        v.trigger('play');
+    function playMedia(m){ //Reproducir video y pausar carrusel   
+        console.log('Reproducir!!');
+        m.trigger('play');
         $('#myCarousel').carousel('pause');
-        v.on('ended', function(){ //Finalizó el video, pasar al siguiente slide y des-pausear el carrousel
+        m.on('ended', function(){ //Finalizó multimedia, pasar al siguiente slide y des-pausear el carrousel
             setTimeout( () => $('#myCarousel').carousel('next').carousel('cycle') ,500);           
-            v.off();  
+            m.off();  
         });
     }
 
-    function skipVideo(v){ //Detener video del slide anterior y des-pausear el carrusel
-        vid.trigger('pause');
-        vid[0].currentTime = 0;
+    function skipMedia(m){ //Detener multimedia del slide anterior y des-pausear el carrusel
+        m.trigger('pause');
+        m[0].currentTime = 0;
         $('#myCarousel').carousel('cycle');
     }
 
     $('#myCarousel').on('slid.bs.carousel', function (e) { //El carrusel llegó al siguiente slide
-        if(currentVid!=null) skipVideo(currentVid);
-        vid = $('#myCarousel .carousel-item.active video');
-        if(vid.length){
-            setTimeout( () => playVideo(vid) ,500);
-            currentVid = vid;
+        console.log("Evento slide");
+        if(currentMed!=null) skipMedia(currentMed);
+        let media = ($('#myCarousel .carousel-item.active video').length) ? ($('#myCarousel .carousel-item.active video')) : ($('#myCarousel .carousel-item.active audio'));
+        console.log('Media',media);
+        if(media.length){
+            setTimeout( () => playMedia(media) ,500);
+            currentMed = media
         } else {
-            currentVid = undefined;
+            console.log("No hay multimedia.");
+            currentMed = null;
         }
+
     });
     
 })
