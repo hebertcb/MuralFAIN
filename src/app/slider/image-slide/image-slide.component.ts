@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-image-slide',
-  inputs: ['slide'],
+  inputs: ['slideurl'],
   templateUrl: './image-slide.component.html',
   styleUrls: ['./image-slide.component.css']
 })
 export class ImageSlideComponent implements OnInit {
-  slide: Object;
+  slideurl: string;
 
   constructor() { }
 

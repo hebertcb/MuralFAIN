@@ -16,17 +16,40 @@
 }
 
 /* Carrusel */
-.carousel-item{
-    height: calc(100vh - 6rem);    
-    background-color: gray;
+.carousel-item{ 
+    background-color: black;
 }
 
 .carousel-item .bgimage{
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: center center;
+    background-position: center;
 }
 
+.carousel-item .blurbg{        
+    filter: blur(8px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;    
+    transform: scale(1.1);
+    z-index: -1;
+}
+
+.avisoSlide h2{
+    /*font-size: 3.8rem*/
+    letter-spacing: .3rem;
+    text-shadow: .1rem .1rem .8rem black;
+    font-weight: 700;
+}
+
+.avisoSlide h4{
+    text-shadow: .1rem .1rem .5rem black;
+}
 
 /* Avisos */
 
@@ -54,12 +77,24 @@ body {
 }
 
 .cartel{
+    display: block;
     font-family: Montserrat;
     font-weight: 700;
     background-color: #1abc9c;
     padding: .8rem;
     text-align: center;
 }
+
+#colAvisos, #colAgenda, .carousel-item{
+    height: calc(100vh - 6rem);
+}
+
+.contenedor{
+    overflow-y: auto;
+    margin: 0;
+}
+
+
 /*
 app-avisos{
     overflow-y: auto; 

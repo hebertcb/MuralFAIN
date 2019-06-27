@@ -1,13 +1,13 @@
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel"  data-pause="false">
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" *ngFor="let slide of slideList; index as i" [attr.data-slide-to]="i" [class.active]="!i"></li>
   </ol>
   <div class="carousel-inner">
     <div *ngFor="let slide of slideList; first as isFirst" [ngSwitch]="slide.tipo" class="carousel-item" [class.active]="isFirst">   
-      <app-image-slide *ngSwitchCase="'imagen'" [slide]=slide></app-image-slide>      
-      <app-text-slide *ngSwitchCase="'texto'" [slide]=slide></app-text-slide> 
-      <app-audio-slide *ngSwitchCase="'audio'" [slide]=slide></app-audio-slide>
-      <app-video-slide *ngSwitchCase="'video'" [slide]=slide></app-video-slide>     
+      <app-image-slide *ngSwitchCase="'imagen'" [slideurl]="slide.url"></app-image-slide>      
+      <app-text-slide *ngSwitchCase="'texto'" [slide]="slide"></app-text-slide> 
+      <app-audio-slide *ngSwitchCase="'audio'" [slide]="slide"></app-audio-slide>
+      <app-video-slide *ngSwitchCase="'video'" [slideurl]="slide.url"></app-video-slide>     
     </div>
   </div>
   <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">

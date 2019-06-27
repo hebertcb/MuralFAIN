@@ -1,19 +1,13 @@
-<div class="cartel">
-  IMPORTANTE
-</div>
-<div>
-  <ul>
+<div id="colAvisos" class="d-flex flex-column">
+  <span class="cartel">IMPORTANTE</span>
+  <ul class="contenedor">
     <li>
       <span class="font-weight-bold">Título importante:</span>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. In velit asperiores animi reprehenderit unde.
-      </p>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In velit asperiores animi reprehenderit unde.</p>
     </li>
     <li *ngFor="let aviso of avisoList">
       <span class="font-weight-bold">{{aviso.titulo}}:</span>
-      <p>
-        {{aviso.descripcion}}
-      </p>
+      <p>{{aviso.descripcion}}</p>
     </li>
   </ul>
 </div>
