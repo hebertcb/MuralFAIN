@@ -16,11 +16,14 @@ export class AgendaComponent implements OnInit {
     return this.eventosService.getEventos()
     .snapshotChanges().subscribe(item=>{
       this.eventoList=[];
-      item.forEach( element => {
-        let x = element.payload.toJSON();
-        x["$key"]=element.key;
-        this.eventoList.push(x as Evento);
-      });
+      item.sort((a: any, b: any) =>
+          new Date(b.payload.toJSON().fecha).getTime() - new Date(a.payload.toJSON().fecha).getTime()
+        ).
+        forEach( element => {
+          let x = element.payload.toJSON();
+          x["$key"]=element.key;
+          this.eventoList.push(x as Evento);
+        });
     });
   }
 

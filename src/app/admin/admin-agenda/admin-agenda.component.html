@@ -1,0 +1,29 @@
+<button class="btn btn-dark" data-toggle="collapse" data-target="#form2">Agregar...</button>
+<div id="form2" class="collapse">
+  <form #evForm="ngForm" (ngSubmit)="onSubmit(evForm)" class="p-2">
+    <input type="submit" style="display: none;" />
+    <div class="row">
+      <div class="col">
+        <input type="date" name="fecha" class="form-control" ngModel placeholder="Fecha">
+      </div>
+      <div class="col">
+        <input type="text" name="titulo" class="form-control" ngModel placeholder="Descripción">
+      </div>
+    </div>
+  </form>
+</div>
+
+<!--ul class="list-group">
+  <li *ngFor="let evento of eventoList" class="list-group-item"><span class="font-weight-bold">({{evento.fecha  |  date:"dd 'de' MMMM"}}) </span>{{evento.titulo}}</li>
+</ul--> 
+<ul class="list-group">
+  <li *ngFor="let evento of eventoList | async" class="list-group-item d-flex align-items-center">
+    <span class="badge badge-primary badge-pill mr-2">{{evento.fecha | date:"dd 'de' MMMM" }}</span>
+    <p class="media-body mb-0">{{evento.titulo}}</p>
+    <div>
+      <button type="button" class="btn btn-link p-0" (click)="onDelete(evento.$key)">   
+        <i class="fas fa-times p-1"></i>
+      </button> 
+    </div>
+  </li>
+</ul>

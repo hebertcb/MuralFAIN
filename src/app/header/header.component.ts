@@ -8,6 +8,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  currentDate = new Date();
   headerInfo: {};
 
   constructor(private firebase: AngularFireDatabase) { 

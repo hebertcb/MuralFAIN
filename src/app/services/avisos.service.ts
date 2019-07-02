@@ -22,4 +22,9 @@ export class AvisosService {
         descripcion: aviso.descripcion
       });
   }
+
+  deleteAviso($key: string){
+    this.avisosList.remove($key);
+    console.log('Aviso eliminado');    
+  }
 }

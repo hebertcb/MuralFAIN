@@ -1,57 +1,17 @@
 <div class="container">
+
   <div class="alert alert-success mt-2" role="alert">        
     Bienvenido <img src="{{user.picture}}" alt="..." class="rounded-circle" height="32px"> {{user.nombre}}, accediste con {{user.email}}!
+    <button (click)="logoutUser()">Salir</button>
   </div>
 
   <h2>Avisos</h2>
-
-  <button class="btn btn-dark" data-toggle="collapse" data-target="#form1">Agregar...</button>
-  <div id="form1" class="collapse">
-    <form #avForm="ngForm" (ngSubmit)="onSubmitAviso(avForm)" class="p-2">
-      <input type="submit" style="display: none;" />
-      <div class="row">
-        <div class="col">
-          <input type="text" name="titulo" class="form-control" ngModel placeholder="Título">
-        </div>
-        <div class="col">
-          <input type="text" name="descripcion" class="form-control" ngModel placeholder="Descripción">
-        </div>
-      </div>
-    </form>
-  </div>
-
-  <ul class="list-group">
-    <li *ngFor="let aviso of avisoList" class="list-group-item"><span class="font-weight-bold">{{aviso.titulo}}: </span>{{aviso.descripcion}}</li>
-  </ul>
+  <app-admin-avisos></app-admin-avisos>  
 
   <h2>Eventos</h2>
-
-  <button class="btn btn-dark" data-toggle="collapse" data-target="#form2">Agregar...</button>
-  <div id="form2" class="collapse">
-    <form #evForm="ngForm" (ngSubmit)="onSubmitEvento(evForm)" class="p-2">
-      <input type="submit" style="display: none;" />
-      <div class="row">
-        <div class="col">
-          <input type="text" name="fecha" class="form-control" ngModel placeholder="Fecha">
-        </div>
-        <div class="col">
-          <input type="text" name="titulo" class="form-control" ngModel placeholder="Descripción">
-        </div>
-      </div>
-    </form>
-  </div>
-
-  <ul class="list-group">
-    <li *ngFor="let evento of eventoList" class="list-group-item"><span class="font-weight-bold">({{evento.fecha  |  date:"dd 'de' MMMM"}}) </span>{{evento.titulo}}</li>
-  </ul> 
+  <app-admin-agenda></app-admin-agenda> 
 
   <h2>Slides</h2>
+  <app-admin-slider></app-admin-slider>
 
-  <div *ngFor="let slide of slideList" class="media">
-    <img [src]="slide.url" class="mr-3" alt="...">
-    <div class="media-body">
-      <h5 class="mt-0">Título</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-    </div>
-  </div>
 </div>

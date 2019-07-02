@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { AvisosService } from '../services/avisos.service';
-import { Aviso } from '../models/aviso';
-import { EventosService } from '../services/eventos.service';
-import { Evento } from '../models/evento';
-import { SlidesService } from '../services/slides.service';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { AvisosService } from '../services/avisos.service';
+import { EventosService } from '../services/eventos.service';
+import { SlidesService } from '../services/slides.service';
+import { Aviso } from '../models/aviso';
+import { Evento } from '../models/evento';
+import { Observable } from 'rxjs';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { finalize, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin',
@@ -16,14 +19,7 @@ export class AdminComponent implements OnInit {
   user : any = {};
   isLogin: boolean;
 
-  avisoList: Aviso[];
-  eventoList: Evento[];
-  slideList: any[];
-
-  constructor(private avisosService: AvisosService,
-              private eventosService: EventosService,
-              private slidesService: SlidesService,
-              private authService: AuthService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.authService.getAuth().subscribe(auth => {
@@ -37,57 +33,10 @@ export class AdminComponent implements OnInit {
         this.isLogin = false;
       }
     });
-
-    this.avisosService.getAvisos()
-      .snapshotChanges().subscribe(item=>{
-        this.avisoList=[];
-        item.forEach( element => {
-          let x = element.payload.toJSON();
-          x["$key"]=element.key;
-          this.avisoList.push(x as Aviso);
-        });
-      }); 
-     this.eventosService.getEventos()
-      .snapshotChanges().subscribe(item=>{
-        this.eventoList=[];
-        item.forEach( element => {
-          let x = element.payload.toJSON();
-          x["$key"]=element.key;
-          this.eventoList.push(x as Evento);
-        });
-      });     
-      this.slidesService.getSlides()
-        .snapshotChanges().subscribe(item => {
-          this.slideList=[];
-          item.forEach( element => {
-          let x = element.payload.toJSON();
-          x["$key"]=element.key;
-          this.slideList.push(x as any);
-        });
-      });
   }
 
-  onSubmitAviso(form : NgForm){
-    //if(form.value.$key == null)
-    
-      this.avisosService.insertAviso(form.value);
-    //else
-    //  this.redesService.updateRed(form.value);
-    
-    this.resetForm(form);
-    //this.toastr.success('Operación realizada con éxito', 'Red Registered');    
-  }
-
-  onSubmitEvento(form : NgForm){
-
-    this.eventosService.insertEvento(form.value);    
-    this.resetForm(form);  
-  }
-
-  resetForm(form : NgForm){
-    if(form != null)
-      form.reset();
-    //this.redesService.selectedRed = new Red();
+  logoutUser(){
+    this.authService.logout();
   }
 
 }

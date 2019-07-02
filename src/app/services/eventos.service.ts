@@ -22,4 +22,9 @@ export class EventosService {
         titulo: evento.titulo
       });
   }
+
+  deleteEvento($key: string){
+    this.eventosList.remove($key);
+    console.log('Evento eliminado');    
+  }
 }

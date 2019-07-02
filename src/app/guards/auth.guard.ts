@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { take, map, tap } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { take, map, tap } from 'rxjs/operators';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   canActivate(next, state):Observable<boolean>{
     return this.authService.afAuth.authState.pipe(
@@ -17,7 +17,8 @@ export class AuthGuard implements CanActivate {
       map(user => !!user),
       tap(loggedIn => {
         if (!loggedIn) {
-          console.log('Access denied');          
+          console.log('Access denied');   
+          this.router.navigate(['/login-fain']);   
         }
       })
     );
