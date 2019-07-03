@@ -11,6 +11,8 @@ import { AvisosComponent } from './home/avisos/avisos.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
+import { ToastrModule } from 'ngx-toastr';
+
 //Local
 import { registerLocaleData } from '@angular/common';
 import localeEsCl from '@angular/common/locales/es-CL';
@@ -63,7 +65,8 @@ registerLocaleData(localeEsCl, 'es-CL');
     AngularFireModule.initializeApp(environment.firebaseConfig),    
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ToastrModule.forRoot() 
   ],
   providers: [AvisosService, EventosService, SlidesService, { provide: LOCALE_ID, useValue: 'es-CL' }],
   bootstrap: [AppComponent]

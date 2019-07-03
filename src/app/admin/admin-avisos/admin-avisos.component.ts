@@ -4,6 +4,8 @@ import { Aviso } from '../../models/aviso';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-admin-avisos',
@@ -14,7 +16,7 @@ export class AdminAvisosComponent implements OnInit {
   
   avisoList: Observable<Aviso[]>;
 
-  constructor(private avisosService: AvisosService) {
+  constructor(private avisosService: AvisosService, private toastr: ToastrService) {
     this.avisoList = this.avisosService.getAvisos()
       .snapshotChanges().pipe(
         map(changes =>
@@ -30,10 +32,9 @@ export class AdminAvisosComponent implements OnInit {
     //if(form.value.$key == null)
       this.avisosService.insertAviso(form.value);
     //else
-    //  this.redesService.updateRed(form.value);
-    
+    //  this.redesService.updateRed(form.value);    
     this.resetForm(form);
-    //this.toastr.success('Operación realizada con éxito', 'Red Registered');    
+    this.toastr.success('Operación realizada con éxito', 'Aviso Agregado');    
   }
 
   resetForm(form : NgForm){
@@ -45,6 +46,7 @@ export class AdminAvisosComponent implements OnInit {
   onDelete($key: string) {
     if(confirm('¿Estas seguro que deseas elimiar este aviso?')) {
       this.avisosService.deleteAviso($key);
+      this.toastr.info('Operación realizada con éxito', 'Aviso eliminado');
       //this.toastr.warning('Registro eliminado correctamente...', 'Red removed');
     }
   }
