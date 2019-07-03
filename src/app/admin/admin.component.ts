@@ -1,14 +1,6 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { AvisosService } from '../services/avisos.service';
-import { EventosService } from '../services/eventos.service';
-import { SlidesService } from '../services/slides.service';
-import { Aviso } from '../models/aviso';
-import { Evento } from '../models/evento';
-import { Observable } from 'rxjs';
-import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
-import { finalize, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -19,15 +11,12 @@ export class AdminComponent implements OnInit {
   user : any = {};
   isLogin: boolean;
 
-  constructor(private authService: AuthService) { }
+  constructor(private router:Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.authService.getAuth().subscribe(auth => {
       if(auth){
-        this.isLogin = true;
-        this.user.nombre = auth.displayName;
         this.user.email = auth.email;
-        this.user.picture = auth.photoURL;
         //this.user.id = auth.uid;               
       }else{
         this.isLogin = false;
@@ -35,8 +24,10 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  logoutUser(){
-    this.authService.logout();
+  logoutUser(){   
+    this.authService.logout()
+      .then( (res) => this.router.navigate(['/login-fain'] ) 
+    );
   }
 
 }

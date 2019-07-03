@@ -14,7 +14,6 @@ export class AdminSliderComponent implements OnInit {
 
   slideList: Observable<any[]>;  
   percentage: Observable<number>;
-  task: AngularFireUploadTask;
 
   constructor(private slidesService: SlidesService) { 
     this.slideList = this.slidesService.getSlides()
@@ -22,28 +21,26 @@ export class AdminSliderComponent implements OnInit {
         map(changes =>
           changes.map(c => ({ $key: c.payload.key, ...c.payload.val() }))
         )
-      );
+      );     
+    //this.percentage = this.slidesService.getPercentage();  
   }
 
   ngOnInit() {
   }
 
-  onSubmitMedia(inp : any, type: string, form?: NgForm){
-    let file = inp.files.item(0);
-
-    if(file.type.split('/')[0] !== type){
-      console.error('unsupported file type :( ');
-      return;
-    }
-
-    this.slidesService.insertMediaSlide(file,type,form);       
-    if(inp) inp.value = "";
-    if(form) this.resetForm(form);
+  onSubmitMedia(inp : any, type: string, form?: NgForm){    
+    let task = this.slidesService.insertMediaSlide(inp.files, type, form.value);      
+    //Porcentaje
+    this.percentage = task.percentageChanges();
+    //Reset    
+    if(form) this.resetForm(form);          
+    inp.value = "";
   }
 
   onSubmitTexto(form: NgForm){    
-    form['tipo']='texto';
-    this.slidesService.insertNoMediaSlide(form);
+    form.value['tipo']='texto';
+    this.slidesService.insertNoMediaSlide(form.value);
+    this.resetForm(form);
   }
 
 

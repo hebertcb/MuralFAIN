@@ -4,9 +4,10 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './guards/auth.guard';
+import { noAuthGuard } from './guards/noauth.guard';
 
 const routes: Routes = [  
-  { path: 'login-fain', component: LoginComponent},
+  { path: 'login-fain', component: LoginComponent, canActivate:[noAuthGuard]},
   { path: 'admin', component: AdminComponent, canActivate:[AuthGuard]},
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: '' }

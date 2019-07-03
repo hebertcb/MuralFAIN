@@ -1,6 +1,6 @@
 <app-image-slide [slideurl]="slide.imgurl"></app-image-slide>
 <audio>
-  <source src="{{slide.url}}" type="audio/{{slide.mediatype}}">
+  <source src="{{slide.url}}" type="audio/{{slide.filename | extension}}">
     Your browser does not support the audio element.
 </audio>
 <div class="carousel-caption d-none d-md-block">

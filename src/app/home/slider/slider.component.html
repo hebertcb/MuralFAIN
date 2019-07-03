@@ -1,9 +1,9 @@
-<div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel"  data-pause="false">
+<div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel"  data-pause="false" data-interval="10000">
   <ol class="carousel-indicators">
-    <li data-target="#myCarousel" *ngFor="let slide of slideList; index as i" [attr.data-slide-to]="i" [class.active]="!i"></li>
+    <li data-target="#myCarousel" *ngFor="let slide of slideList | async; index as i" [attr.data-slide-to]="i" [class.active]="!i"></li>
   </ol>
   <div class="carousel-inner">
-    <div *ngFor="let slide of slideList; first as isFirst" [ngSwitch]="slide.tipo" class="carousel-item" [class.active]="isFirst">   
+    <div *ngFor="let slide of slideList | async; first as isFirst" [ngSwitch]="slide.tipo" class="carousel-item" [class.active]="isFirst">   
       <app-image-slide *ngSwitchCase="'imagen'" [slideurl]="slide.url"></app-image-slide>      
       <app-text-slide *ngSwitchCase="'texto'" [slide]="slide"></app-text-slide> 
       <app-audio-slide *ngSwitchCase="'audio'" [slide]="slide"></app-audio-slide>

@@ -21,11 +21,11 @@
     <div class="tab-pane fade show active" id="sl-imagen" role="tabpanel" aria-labelledby="imagen-tab"> 
       <div class="form-group">
         <label for="controlimgFile">Selecciona una imagen</label>
-        <input type="file" class="form-control-file" id="controlimgFile" #upimage accept="image/*">
-        <div *ngIf="percentage | async as percent" class="progress">
+        <input type="file" class="form-control-file" id="controlimgFile" #upImage accept="image/*">
+        <div *ngIf="(percentage | async) | number:'1.0-0' as percent" class="progress">
           <div class="progress-bar progress-bar-striped" role="progressbar" attr.aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100" [style.width]="percent + '%'">{{percent}} %</div>
         </div>
-        <input class="btn btn-primary" type="button" value="Subir" (click)="startUpload(upimage,'image')">
+        <input class="btn btn-primary" type="button" value="Subir" (click)="onSubmitMedia(upImage,'image')">
       </div>
     </div>
     <div class="tab-pane fade" id="sl-texto" role="tabpanel" aria-labelledby="texto-tab">
@@ -35,68 +35,71 @@
             <input type="text" name="titulo" class="form-control" ngModel placeholder="Título">
           </div>
           <div class="col">
-            <input type="text" name="descripcion" class="form-control" ngModel placeholder="Contenido">
+            <input type="text" name="contenido" class="form-control" ngModel placeholder="Contenido">
           </div>
         </div>
-        <input type="submit" value="Aceptar">
+        <input class="btn btn-primary" type="submit" value="Aceptar">
       </form>
     </div>
     <div class="tab-pane fade" id="sl-video" role="tabpanel" aria-labelledby="video-tab">
       <div class="form-group">
         <label for="controlVideo">Selecciona un video</label>
-        <input type="file" class="form-control-file" id="controlVideo" #upVideo accept="video/*">
-        <div *ngIf="percentage | async as percent" class="progress">
-          <div class="progress-bar progress-bar-striped" role="progressbar" attr.aria-valuenow="{{percent | number}}" aria-valuemin="0" aria-valuemax="100" [style.width]="percent + '%'">{{percent | number}} %</div>
+        <input type="file" class="form-control-file" id="controlVideo" #upVideo accept="video/mp4,video/ogg,video/webm">
+        <div *ngIf="(percentage | async) | number:'1.0-0' as percent" class="progress">
+          <div class="progress-bar progress-bar-striped" role="progressbar" attr.aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100" [style.width]="percent + '%'">{{percent}} %</div>
         </div>
-        <input class="btn btn-primary" type="button" value="Subir" (click)="startUpload(upVideo,'video')">
+        <input class="btn btn-primary" type="button" value="Subir" (click)="onSubmitMedia(upVideo,'video')">
       </div>
     </div>
     <div class="tab-pane fade" id="sl-audio" role="tabpanel" aria-labelledby="audio-tab">
-      <form #slAudioForm="ngForm" (ngSubmit)="onSubmitAudio(slAudioForm)" class="p-2">
-        <input type="submit" style="display: none;" />
+      <form #slAudioForm="ngForm" (ngSubmit)="onSubmitMedia(upAudio,'audio',slAudioForm)" class="p-2">
         <div class="row">
           <div class="col">
             <input type="text" name="titulo" class="form-control" ngModel placeholder="Título">
           </div>
           <div class="col">
-            <input type="file" class="form-control-file" #upAudio accept="audio/*">
+            <input type="file" class="form-control-file" #upAudio accept="audio/mp3,audio/wav,audio/ogg">
           </div>
         </div>
+        <div *ngIf="(percentage | async) | number:'1.0-0' as percent" class="progress">
+            <div class="progress-bar progress-bar-striped" role="progressbar" attr.aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100" [style.width]="percent + '%'">{{percent}} %</div>
+          </div>
+        <input class="btn btn-primary" type="submit" value="Aceptar">
       </form>
     </div>
   </div>
   
 </div>
 
-<div class="list-group">
+<div class="list-group mt-2">
   <!--a href="#"--> <div *ngFor="let slide of slideList | async" [ngSwitch]="slide.tipo" class="d-flex list-group-item list-group-item-action">
     <ng-template [ngSwitchCase]="'imagen'">
       <img src="{{slide.url}}" class="mr-3" alt="..." width="200px">
       <div class="media-body">
         <h5 class="mb-1">Slide de {{slide.tipo}}</h5>
-        <p class="mb-1">( {{slide.url | filename}} )</p>
+        <p class="mb-1">( {{slide.filename}} )</p>
       </div>  
     </ng-template> 
     <ng-template [ngSwitchCase]="'texto'"> 
       <div class="media-body">
         <h5 class="mb-1">Slide de {{slide.tipo}}</h5>
         <p class="mb-1"><span class="font-weight-bold">Titulo: </span>{{slide.titulo}}<br>
-          <span class="font-weight-bold">Contenido: </span>{{slide.descripcion}}</p>
+          <span class="font-weight-bold">Contenido: </span>{{slide.contenido}}</p>
       </div>
     </ng-template>
     <ng-template [ngSwitchCase]="'video'"> 
       <video src="{{slide.url}}" class="mr-3" width="200px"></video>
       <div class="media-body">
         <h5 class="mb-1">Slide de {{slide.tipo}}</h5>
-        <p class="mb-1">( {{slide.url | filename}} )</p>
+        <p class="mb-1">( {{slide.filename}} )</p>
       </div>
     </ng-template>
     <ng-template [ngSwitchCase]="'audio'">
       <img src="{{slide.imgurl}}" class="mr-3" alt="..." width="200px">
       <div class="media-body">
         <h5 class="mb-1">Slide de {{slide.tipo}}</h5>
-        <p class="mb-1">Audio ( {{slide.url | filename}} )<br>
-          Imagen {{slide.imgurl | filename}}</p>
+        <p class="mb-1">Audio ( {{slide.filename}} )<br>
+          Imagen ( Default.jpg )</p>
       </div>  
     </ng-template> 
     <div>

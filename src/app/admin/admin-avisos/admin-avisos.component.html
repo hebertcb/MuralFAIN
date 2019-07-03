@@ -1,28 +1,13 @@
 <button class="btn btn-dark" data-toggle="collapse" data-target="#form1">Agregar...</button>
 <div id="form1" class="collapse">
-  <form #avForm="ngForm" (ngSubmit)="onSubmit(avForm)" class="p-2">
-    <input type="submit" style="display: none;" />
-    <div class="row">
-      <div class="col">
-        <input type="text" name="titulo" class="form-control" ngModel placeholder="Título">
-      </div>
-      <div class="col">
-        <input type="text" name="descripcion" class="form-control" ngModel placeholder="Descripción">
-      </div>
-    </div>
+  <form ngNativeValidate #avForm="ngForm" (ngSubmit)="onSubmit(avForm)" class="p-2">
+      <input type="text" name="titulo" class="form-control mb-2" ngModel placeholder="Título" maxlength="100" required />
+      <textarea name="descripcion" class="form-control" rows="3" ngModel placeholder="Descripción..." maxlength="300" required></textarea>
+      <input type="submit" class="btn btn-primary" value="Confirmar"/>
   </form>
 </div>
-  <!--ul class="list-group">
-    <li *ngFor="let aviso of avisoList" class="list-group-item d-flex">
-      <div class="media-body">
-        <span class="font-weight-bold">{{aviso.titulo}}: </span>{{aviso.descripcion}}
-      </div>
-      <button type="button" class="btn btn-link p-0" (click)="onDeleteAviso(aviso.$key)">   
-          <i class="fas fa-times p-1"></i>
-      </button> 
-    </li>
-  </ul-->
-<div class="list-group">
+
+<div class="list-group mt-2">
   <div *ngFor="let aviso of avisoList | async" class="list-group-item d-flex">
     <div class="media-body">
         <h5 class="mb-1">{{aviso.titulo}}</h5>
